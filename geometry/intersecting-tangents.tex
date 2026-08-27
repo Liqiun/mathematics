@@ -1,0 +1,32 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Intersecting tangents
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.8]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+\coordinate (center) at (3,0);
+% Point outside circle is (e)
+\coordinate (e) at (-2,2);
+\node [draw,thick,circle through=(a),name path=circ] (circle) at (center) {};
+% Draw the tangent line
+\coordinate (tan1) at (tangent cs:node=circle, point={(e)}, solution=1);
+\coordinate (tan2) at (tangent cs:node=circle, point={(e)}, solution=2);
+\draw[thick,blue] (e) -- node[left] {$\mathbf{a}$} (tan1);
+\draw[thick,red] (e) -- node[above] {$\mathbf{a}$} (tan2);
+% Draw radii
+\draw[thick,black!10!teal] (center) -- node[below] {$\mathbf{r}$} (tan1);
+\draw[thick,black!10!teal] (center) -- node[right] {$\mathbf{r}$} (tan2);
+% Draw line from exterior point to center
+\draw[thick,violet] (e) -- (center);
+% Draw right angles
+\draw[thick,black!10!teal,rotate=34] (tan1) rectangle +(10pt,10pt);
+\draw[thick,black!10!teal,rotate=-168] (tan2) rectangle +(10pt,10pt);
+% Label angles
+\node [violet,right] at (e) {$\bm{\alpha}$};
+\node [violet,below right] at (e) {$\bm{\alpha}$};
+\end{tikzpicture}
+\end{minipage}

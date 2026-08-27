@@ -1,0 +1,39 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=1.2]
+
+% Points of the triangle
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+\coordinate (c) at (4,3);
+
+% Midpoints of the sides
+\coordinate (mid1) at ($(a)!.5!(c)$);
+\coordinate (mid2) at ($(b)!.5!(c)$);
+
+% Base and median
+\draw[thick] (a) -- (b);
+\draw[thick] (mid1) -- (mid2);
+
+% Get the median
+\coordinate (midbase) at ($(a)!.5!(b)$);
+
+% Triangle sides
+\draw[thick,red] (a) -- node[above] {$\mathbf{b}$} (mid1);
+\draw[thick,blue] (mid1) -- node[above] {$\mathbf{a}$} (c);
+\draw[thick,black!10!teal] (b) -- 
+  node[above,xshift=2pt] {$\mathbf{d}$} (mid2);
+\draw[thick,violet] (mid2) -- 
+  node[above,xshift=2pt] {$\mathbf{c}$} (c);
+
+% Display formula
+% Display formula
+\node at ($(mid1)+(1.5,-.6)$) {$
+\mathbf{\mathcolor{blue} a /
+\mathcolor{red} b  = 
+\mathcolor{violet} c  / 
+\mathcolor{black!10!teal} d
+}$};
+\end{tikzpicture}
+\end{minipage}

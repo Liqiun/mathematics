@@ -1,0 +1,37 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Inscribed angle one half of central angle
+%
+\begin{minipage}[t]{.48\textwidth}
+\hspace{3em}
+\begin{tikzpicture}[scale=.8]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+\coordinate (center) at (3,0);
+% Line containing lower points is (c) -- (d)
+\coordinate (c) at (0,-2);
+\coordinate (d) at (6,-2);
+% Line containing upper points is (e) -- (f);
+\coordinate (e) at (0,2.3);
+\coordinate (f) at (4.5,3);
+% Name the upper and lower lines
+\path [name path=chord1] (c) -- (d);
+\path [name path=chord2] (e) -- (f);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\node [draw,thick,circle through=(a),name path=circ] at (center) {};
+% Get intersections of the upper and lower lines with the circle
+\path [name intersections={of=circ and chord1,by={i1,i2}}];
+\path [name intersections={of=circ and chord2,by={i3,i4}}];
+% Draw the lower chord
+%\draw[thick] (i1) -- (i2);
+% Draw the two subtended angles and the center angle
+\draw[thick,red] (i1) -- (i3)
+  node[below,xshift=-3pt,yshift=-12pt] {$\bm{\alpha}$} -- (i2);
+\draw[thick,black!10!teal] (i1) -- (i4)
+  node[below,xshift=6pt,yshift=-12pt] {$\bm{\alpha}$} -- (i2);
+\draw[thick,blue] (i1) -- (center)
+  node[below,yshift=-8pt] {$\bm{2\alpha}$} -- (i2);
+\end{tikzpicture}
+\end{minipage}

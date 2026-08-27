@@ -1,0 +1,46 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Intersecting chords
+%
+\begin{minipage}[t]{.48\textwidth}
+\hspace{4em}
+\begin{tikzpicture}[scale=.8]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Line containing lower points is (c) -- (d)
+\coordinate (c) at (0,-2);
+\coordinate (d) at (6,-1.5);
+% Line containing upper points is (e) -- (f)
+\coordinate (e) at (0,1.5);
+\coordinate (f) at (6,4);
+% Name the upper and lower lines
+\path [name path=chord1] (c) -- (d);
+\path [name path=chord2] (e) -- (f);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\coordinate (mid) at ($ (a)!.5!(b) $);
+\node [draw,thick,circle through=(a),name path=circ] at (mid) {};
+% Get intersections of the upper and lower lines with the circle
+\path [name intersections={of=circ and chord1,by={i1,i2}}];
+\path [name intersections={of=circ and chord2,by={i3,i4}}];
+% Name the two chords
+\path [name path=x1] (i1) -- (i3);
+\path [name path=x2] (i2) -- (i4);
+% Get their intersection
+\path [name intersections={of=x1 and x2,by={p}}];
+% Draw four lines from intersection to circle
+\draw[thick,red] (i1) -- node[left] {$\mathbf{a}$} (p);
+\draw[thick,blue] (p) --  node[left] {$\mathbf{b}$} (i3);
+\draw[thick,violet] (i2) -- node[right,yshift=4pt] {$\mathbf{c}$} (p);
+\draw[thick,black!10!teal] (p) -- node[right,yshift=4pt] {$\mathbf{d}$} (i4);
+% Display formula in color
+\node at ($(mid)+(0pt,-30pt)$) 
+{$
+\mathbf{\mathcolor{red} a \cdot
+\mathcolor{blue} b  = 
+\mathcolor{violet} c  \cdot
+\mathcolor{black!10!teal} d
+}$};
+\end{tikzpicture}
+\end{minipage}

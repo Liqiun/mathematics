@@ -1,0 +1,45 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Intersecting secants
+%
+\begin{minipage}[t]{.48\textwidth}
+\hspace{4em}
+\begin{tikzpicture}[scale=.8]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Line containing lower points is (c) -- (d)
+\coordinate (c) at (1,-3);
+\coordinate (d) at (7,1.5);
+% Point outside circle is (e)
+\coordinate (e) at (1,5);
+% Name the lower chord
+\path [name path=chord] (c) -- (d);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\coordinate (mid) at ($ (a)!.5!(b) $);	
+\node [draw,thick,circle through=(a),name path=circ] at (mid) {};
+% Get intersection of the lower line with the circle
+\path [name intersections={of=circ and chord,by={i1,i2}}];
+% Draw the full secants
+\draw [name path=secant1,thick,black!10!teal] (i1) -- node[left,xshift=6pt,yshift=-13pt] {$\mathbf{c}$} (e);
+\draw [name path=secant2,thick,blue] (i2) -- node[right] {$\mathbf{a}$} (e);
+% Get intersections of the secants with the circle
+\path [name intersections={of=circ and secant1,by={s11,s12}}];
+\path [name intersections={of=circ and secant2,by={s21,s22}}];
+% Draw offset lines from outside point with the intersections of the secants
+\draw[thick,red]
+  let \p1 = (s21), \p2 = (e) in
+    (\x2-5pt,\y2) -- node[left] {$\mathbf{b}$} (\x1-5pt,\y1);
+\draw[thick,violet]
+  let \p1 = (s12), \p2 = (e) in
+    (\x2+5pt,\y2+3pt) -- node[right,xshift=2pt] {$\mathbf{d}$} (\x1+4pt,\y1+2pt);
+% Display formula in color
+\node at ($(mid)+(12pt,0)$) {$
+\mathbf{\mathcolor{blue} a \cdot
+\mathcolor{red} b  = 
+\mathcolor{black!10!teal} c  \cdot
+\mathcolor{violet} d
+}$};
+\end{tikzpicture}
+\end{minipage}

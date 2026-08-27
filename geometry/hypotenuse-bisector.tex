@@ -1,0 +1,22 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Bisector of the hypotenuse is half the hypotenuse
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=1.1]
+\coordinate (a) at (0,0);   % Points of the triangle
+\coordinate (b) at (6,0);
+\coordinate (c) at (0,3);
+% Coordinate of bisector
+\coordinate (hyp) at ($(b)!.5!(c)$);
+% Draw the triangle and bisectors
+\draw[thick] (b) -- (a) -- (c);
+\draw[thick,blue] (a) -- node[above,red] {$\mathbf{a}$} (hyp);
+\draw[thick,blue] (b) -- node[above,red] {$\mathbf{a}$} (hyp);
+\draw[thick,blue] (c) -- node[above,red] {$\mathbf{a}$} (hyp);
+% Draw square to denote right angle
+\draw (a) rectangle +(8pt,8pt);
+% Points at the intersections
+\end{tikzpicture}
+\end{minipage}

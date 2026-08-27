@@ -1,0 +1,44 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Perpendicular bisectors meet in the center of the circumscribed circle
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.8,baseline=-30mm]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Line containing lower points is (c) -- (d)
+\coordinate (c) at (0,-2);
+\coordinate (d) at (6,-2);
+% Line containing upper points is (e) -- (f)
+\coordinate (e) at (0,2);
+\coordinate (f) at (4,3);
+% Name the two chords
+\path [name path=chord1] (c) -- (d);
+\path [name path=chord2] (e) -- (f);
+% Name the coordinate of the center of the circle
+\coordinate (center) at ($ (a)!.5!(b) $);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\node [draw,thick,circle through=(a),name path=circ] at (center) {};
+% Get intersections of the upper and lower lines with the circle
+\path [name intersections={of=circ and chord1,by={i1,i2}}];
+\path [name intersections={of=circ and chord2,by={i3,i4}}];
+% Draw triangle
+\draw [thick,blue] (i1) -- node[left] {$\mathbf{a}$} ($(i1)!.5!(i3)$) --
+  node[left] {$\mathbf{a}$} (i3);
+\draw[thick,black!10!teal] (i3) -- node[right] {$\mathbf{b}$} ($(i3)!.5!(i2)$) --
+  node[right] {$\mathbf{b}$} (i2);
+\draw[thick,red] (i2) -- node[below] {$\mathbf{c}$} ($(i2)!.5!(i1)$) -- 
+  node[below] {$\mathbf{c}$} (i1);
+% Draw three perpendicular bisectors
+\draw [thick,red,fill] (center) -- ($(i1)!(center)!(i2)$);
+\draw [thick,blue,fill] (center) -- ($(i1)!(center)!(i3)$);
+\draw [thick,black!10!teal,fill] (center) -- ($(i2)!(center)!(i3)$);
+% Draw squares to denote right angles
+\draw[red] ($ (i1) !.5! (i2) $) rectangle +(8pt,8pt);
+\draw[blue,rotate=-30] ($ (i1) !.5! (i3) $) rectangle +(8pt,8pt);
+\draw[violet,rotate=-160] ($ (i3) !.5! (i2) $)
+  rectangle +(8pt,8pt);
+\end{tikzpicture}
+\end{minipage}

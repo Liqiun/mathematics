@@ -1,0 +1,32 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Medians of a triangle meet at a point with ratio 1:2
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=1.1]
+\coordinate (a) at (0,0);   % Points of the triangle
+\coordinate (b) at (6,0);
+\coordinate (c) at (4,3);
+% Coordinates of bisectors
+\coordinate (ab) at ($(a)!.5!(b)$);
+\coordinate (bc) at ($(b)!.5!(c)$);
+\coordinate (ac) at ($(a)!.5!(c)$);
+% Draw the triangle and bisectors
+\draw[blue,thick] (a) -- node[above] {$\mathbf{x}$} (ac) -- node[above] {$\mathbf{x}$} (c);
+\draw[red,thick] (b) -- node[right] {$\mathbf{y}$} (bc) -- node[right] {$\mathbf{y}$} (c);
+\draw[black!10!teal,thick] (a) -- node[below] {$\mathbf{z}$} (ab) -- node[below] {$\mathbf{z}$} (b);
+\draw[thick,red,name path=da] (a) -- (bc);
+\draw[thick,blue,name path=db] (b) -- (ac);
+\draw[thick,black!10!teal,name path=dc] (c) -- (ab);
+% Get their intersection
+\path [name intersections={of=da and db,by={intersection}}];
+% Labels
+\path (a) -- node[above,red] {$\mathbf{2a}$} (intersection);
+\path (bc) -- node[above,red] {$\mathbf{a}$} (intersection);
+\path (b) -- node[above,blue] {$\mathbf{2b}$} (intersection);
+\path (ac) -- node[above,blue] {$\mathbf{b}$} (intersection);
+\path (c) -- node[right,black!10!teal] {$\mathbf{2c}$} (intersection);
+\path (ab) -- node[right,black!10!teal] {$\mathbf{c}$} (intersection);
+\end{tikzpicture}
+\end{minipage}

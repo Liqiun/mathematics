@@ -1,0 +1,29 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Diagonals of rhombus bisect each other and are perpendicular
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.8]
+% Bottom side of rhombus
+\coordinate (a) at (0,0);
+\coordinate (b) at (5,0);
+% Draw rhombus at angle 50
+\draw[thick,black!10!teal] (a) -- 
+  node[left] {$\mathbf{c}$} ++(50:5) coordinate (c) -- 
+  node[above] {$\mathbf{c}$} ++(5,0) coordinate (d) -- 
+  node[right] {$\mathbf{c}$} (b) -- node[below] {$\mathbf{c}$} cycle;
+% Name the two diagonals
+\path [name path=d1] (a) -- (d);
+\path [name path=d2] (b) -- (c);
+% Get their intersection
+\path [name intersections={of=d1 and d2,by={intersection}}];
+% Draw diagonals
+\draw[thick,red] (a) -- node[above] {$\mathbf{a}$} (intersection);
+\draw[thick,red] (intersection) -- node[above] {$\mathbf{a}$} (d);
+\draw[thick,blue] (b) -- node[right] {$\mathbf{b}$} (intersection);
+\draw[thick,blue] (intersection) -- node[right] {$\mathbf{b}$} (c);
+% Draw square to denote right angle
+\draw[rotate=26] (intersection) rectangle +(8pt,8pt);
+\end{tikzpicture}
+\end{minipage}

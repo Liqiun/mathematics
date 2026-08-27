@@ -1,0 +1,44 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Interior angle bisector
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[baseline=-4mm,scale=1.4]
+
+% Draw base and path two lines at known angles
+\path[name path=ab] (0,0) coordinate (a) -- (0:6) coordinate (b);
+\path[name path=ac] (a) -- 
+  node[left,xshift=-2pt,blue] {$\mathbf{a}$} +(50:3.4);
+\path[name path=bc] (b) -- 
+  node[right,xshift=4pt,red] {$\mathbf{b}$} +(150:5);
+
+% Get their intersection and draw lines to third vertex
+\path[name intersections={of=ac and bc,by=c}];
+\draw[blue,thick] (a) -- (c);
+\draw[red,thick] (c) -- (b);
+
+% Path bisectors of two lines
+\path[name path=bisector] (c) -- +(-80:2.5);
+
+% Intersection of angle bisector
+\path [name intersections={of=bisector and ab,by=int}];
+
+% Draw base of triangle
+\draw[thick,violet] (a) -- node[below] {$\mathbf{c}$} (int);
+\draw[thick,black!10!teal] (int) -- node[below] {$\mathbf{d}$} (b);
+
+% Draw bisector and label angle
+\draw[thick] (c) -- (int);
+\node[below,xshift=-4pt,yshift=-10pt] at (c) {$\bm{\alpha}$};
+\node[below,xshift=12pt,yshift=-10pt] at (c) {$\bm{\alpha}$};
+
+% Display formula
+\node at ($(mid1)+(1.5,-.6)$) {$
+\mathbf{\mathcolor{blue} a /
+\mathcolor{red} b  = 
+\mathcolor{violet} c  / 
+\mathcolor{black!10!teal} d
+}$};
+\end{tikzpicture}
+\end{minipage}

@@ -1,0 +1,46 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Chord angles
+%
+\begin{minipage}[t]{.48\textwidth}
+\hspace{4em}
+\begin{tikzpicture}[scale=.8]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Line containing lower points is (c) -- (d)
+\coordinate (c) at (0,-2);
+\coordinate (d) at (6,-1.5);
+% Line containing upper points is (e) -- (f)
+\coordinate (e) at (0,1.5);
+\coordinate (f) at (6,4);
+% Name the upper and lower lines
+\path [name path=chord1] (c) -- (d);
+\path [name path=chord2] (e) -- (f);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\coordinate (mid) at ($ (a)!.5!(b) $);
+\node [draw,thick,circle through=(a),name path=circ] at (mid) {};
+% Get intersections of the upper and lower lines with the circle
+\path [name intersections={of=circ and chord1,by={i1,i2}}];
+\path [name intersections={of=circ and chord2,by={i3,i4}}];
+% Name the two chords
+\path [name path=x1] (i1) -- (i3);
+\path [name path=x2] (i2) -- (i4);
+% Get their intersection
+\path [name intersections={of=x1 and x2,by={p}}];
+% Draw four lines from intersection to circle
+\draw[thick,red] (i1) -- (p) -- 
+  (i4) node[red,below,xshift=7pt,yshift=-7pt] {$\bm{\beta}$} -- cycle;
+\draw[thick,blue] (i2) node[blue,above,xshift=-15pt,yshift=9pt] {$\bm{\gamma}$} -- (p) -- (i3) -- cycle;
+\node[thick,violet,below,xshift=2pt,yshift=-4pt] at (p) {$\bm{\alpha}$};
+% Display formula in color
+\begin{scope}[xshift=1.8cm,yshift=-1.2cm]
+\node[anchor=base,violet] at (0,0) {$\bm{\alpha}$};
+\node[anchor=base] at (.5,0) {$\bm{=}$};
+\node[anchor=base,red] at (1.0,0) {$\bm{\beta}$};
+\node[anchor=base] at (1.5,0) {$\bm{+}$};
+\node[anchor=base,blue] at (2,0) {$\bm{\gamma}$};
+\end{scope}
+\end{tikzpicture}
+\end{minipage}

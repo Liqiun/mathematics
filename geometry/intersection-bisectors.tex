@@ -1,0 +1,35 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Inscribed circle center at meeting of angle bisectors
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[baseline=-6mm,scale=1.5]
+% Draw base and path two lines at known angles
+\draw[thick] (0,0) coordinate (a) -- (0:5) coordinate (b);
+\path[name path=ac] (a) -- +(60:3.5);
+\path[name path=bc] (b) -- +(140:4.5);
+% Get their intersection and draw lines to third vertex
+\path[name intersections={of=ac and bc,by=c}];
+\draw[thick] (a) -- (c) -- (b);
+% Path bisectors of two lines
+\path[name path=bia,blue] (a) -- +(30:3.6);
+\path[name path=bib,red] (b) -- +(160:5);
+% Intersection of angle bisectors
+\path [name intersections={of=bia and bib,by=center}];
+%% Draw angle bisectors to center
+\draw[thick,red] (a) -- (center);
+\draw[thick,blue] (c) -- (center);
+\draw[thick,black!10!teal] (b) -- (center);
+%% Labels of angles
+\node[red,right,xshift=14pt,yshift=4pt] at (a) {$\bm{\alpha}$};
+\node[red,right,xshift=12pt,yshift=16pt] at (a) {$\bm{\alpha}$};
+\node[blue,below,xshift=-4pt,yshift=-12pt] at (c) {$\bm{\beta}$};
+\node[blue,below,xshift=10pt,yshift=-10pt] at (c) {$\bm{\beta}$};
+\node[black!10!teal,left,xshift=-30pt,yshift=6pt] at (b) {$\bm{\gamma}$};
+\node[black!10!teal,left,xshift=-30pt,yshift=20pt] at (b) {$\bm{\gamma}$};
+%% Get perpendicular from center to one side and draw circle
+\coordinate (perp) at ($(a)!(center)!(b)$);
+\node [thick,draw,circle through=(perp)] at (center) {};
+\end{tikzpicture}
+\end{minipage}

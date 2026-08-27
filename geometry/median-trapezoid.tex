@@ -1,0 +1,33 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Median of a trapezoid is average of sides
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}
+% Bottom of trapeze
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Draw the bases of the trapeze
+\draw[thick,violet] (a) -- node[below] {$\mathbf{d}$} (b);
+\path (a) -- ++(50:4) coordinate (c) -- ++(2,0) coordinate (d);
+\draw[thick,black!10!teal] (c) -- node[above] {$\mathbf{c}$} (d);
+% Draw the sides of the trapeze in two parts
+\coordinate (mid1) at ($(a)!.5!(c)$);
+\coordinate (mid2) at ($(b)!.5!(d)$);
+\draw[thick,red] (a) -- node[left,xshift=-2pt] {$\mathbf{a}$} (mid1);
+\draw[thick,red] (mid1) -- node[left,xshift=-2pt] {$\mathbf{a}$} (c);
+\draw[thick,blue] (b) -- node[right,xshift=2pt] {$\mathbf{b}$} (mid2);
+\draw[thick,blue] (mid2) -- node[right,xshift=2pt] {$\mathbf{b}$} (d);
+% Draw the median
+\draw[thick] (mid1) -- (mid2);
+
+% Formula in color
+\coordinate (center) at ($(mid1)!.5!(mid2)$);
+\node at ($(center)+(0,.3)$) {$
+\mathbf{
+(\mathcolor{black!10!teal} c +
+\mathcolor{violet} d ) / 2
+}$};
+\end{tikzpicture}
+\end{minipage}

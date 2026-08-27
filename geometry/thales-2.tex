@@ -1,0 +1,50 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Thale's theorem 2
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=1.2]
+% Points of the triangle abc
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+\coordinate (c) at (4,3);
+
+% Midpoints of the sides
+\coordinate (mid1) at ($(a)!.5!(c)$);
+\coordinate (mid2) at ($(b)!.5!(c)$);
+
+% Midpoint of the base
+\coordinate (midbase) at ($(a)!.5!(b)$);
+
+% Sides of the triangle
+\draw[thick] (a) -- (mid1);
+\draw[thick,blue] (mid1) -- 
+  node[right,xshift=2pt] {$\mathbf{a}$} (c);
+\draw[thick] (b) -- (mid2);
+\draw[thick,violet] (mid2) -- 
+  node[left,xshift=-2pt] {$\mathbf{c}$} (c);
+
+% Offset lines
+\draw[thick,red]
+  let \p1 = (a), \p2 = (c) in
+    (\x1-6pt,\y1) -- node[above] {$\mathbf{b}$} (\x2-4pt,\y2+3pt);
+\draw[thick,black!10!teal]
+  let \p1 = (b), \p2 = (c) in
+    (\x1+5pt,\y1) -- node[above,xshift=2pt] {$\mathbf{d}$} (\x2+3pt,\y2+3pt);
+
+% Base and median
+\draw[thick,orange] (a) -- node[above] {$\mathbf{f}$} (b);
+\draw[thick,violet] (mid1) -- node[above] {$\mathbf{e}$} (mid2);
+
+% Formula in color
+\node at ($(mid1)+(1.5,-.6)$) {$
+\mathbf{\mathcolor{blue} a /
+\mathcolor{red} b  = 
+\mathcolor{violet} c  / 
+\mathcolor{black!10!teal} d =
+\mathcolor{violet} e /
+\mathcolor{orange} f
+}$};
+\end{tikzpicture}
+\end{minipage}

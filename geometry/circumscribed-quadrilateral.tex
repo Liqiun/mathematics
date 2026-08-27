@@ -1,0 +1,34 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Sums of opposite sides of circumscribed quadrilateral are equal
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.7]
+% Circle goes from (a) to (b)
+\coordinate (x) at (0,3);
+\coordinate (y) at (6,3);
+\coordinate (a) at (-2,5.5);
+% Draw a circle whose center is half-way between (x) and (y) through (x)
+\coordinate (mid) at ($ (x)!.5!(y) $);
+\node [draw,thick,circle through=(x),name path=circ] (circle) at (mid) {};
+% Draw tangent lines
+\coordinate (tan1) at (tangent cs:node=circle, point={(a)}, solution=1);
+\draw[thick,red] (a) -- node[below,xshift=-2pt] {$\mathbf{b}$}
+  ($(a)!1.5!(tan1)$) coordinate (b);
+\coordinate (tan2) at (tangent cs:node=circle, point={(a)}, solution=2);
+\draw[thick,violet] (a) -- node[above] {$\mathbf{c}$}
+  ($(a)!1.8!(tan2)$) coordinate (c);
+\coordinate (tan3) at (tangent cs:node=circle, point={(c)}, solution=2);
+\draw[thick,blue] (c) -- node[right] {$\mathbf{a}$}
+  ($(c)!1.51!(tan3)$)  coordinate (d);
+\draw[thick,black!10!teal] (b) -- node[below] {$\mathbf{d}$} (d);
+% Display formula in color
+\node at (mid) {$
+\mathbf{\mathcolor{red} a +
+\mathcolor{blue} b  = 
+\mathcolor{violet} c  +
+\mathcolor{black!10!teal} d
+}$};
+\end{tikzpicture}
+\end{minipage}

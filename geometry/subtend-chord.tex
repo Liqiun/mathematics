@@ -1,0 +1,29 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Angles of tangent and angle subtending a chord are equal
+%
+\begin{minipage}[t]{.48\textwidth}
+\hspace{3em}
+\begin{tikzpicture}[scale=.8,baseline=-80pt]
+% Circle goes from (a) to (b)
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Line containing lower point (d)
+\coordinate (d) at (7,-2);
+% Point outside circle is (e)
+\coordinate (e) at (1.6,4);
+% Name the lower chord
+\path [name path=chord] (a) -- (d);
+% Draw a circle whose center is half-way between (a) and (b) through (a)
+\node [draw,thick,circle through=(a),name path=circ] (circle) at ($ (a)!.5!(b) $) {};
+% Get intersection of the lower line with the circle
+\path [name intersections={of=circ and chord,by={i1,i2}}];
+% Draw the tangent line
+\coordinate (tan) at (tangent cs:node=circle, point={(e)}, solution=2);
+\draw[thick,blue] (e) -- ($ (e)!2!(tan) $);
+% Draw the triangle
+\draw [thick,blue] (tan) node[below right,xshift=6pt,yshift=-10pt] {$\bm{\alpha}$} -- (i2);
+\draw [thick,red] (tan) -- (a) node[right,xshift=8pt,yshift=2pt] {$\bm{\alpha}$} -- (i2);
+\end{tikzpicture}
+\end{minipage}

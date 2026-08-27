@@ -1,0 +1,27 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Diagonals of parallelogram bisect each other
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.8]
+% Bottom side of parallelogram
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+% Draw parallelogram at angle 50
+\draw[thick,violet] (a) -- node[left,xshift=-2pt,yshift=2pt] {$\mathbf{d}$} +(50:4) coordinate (c);
+\draw[thick,black!10!teal] (c) -- node[above] {$\mathbf{c}$} +(6,0) coordinate (d);
+\draw[thick,violet] (d) -- node[right] {$\mathbf{d}$} +(230:4) coordinate (b);
+\draw[thick,black!10!teal] (b) -- node[below] {$\mathbf{c}$} (a);
+% Name the two diagonals
+\path [name path=d1] (a) -- (d);
+\path [name path=d2] (b) -- (c);
+% Get their intersection
+\path [name intersections={of=d1 and d2,by={intersection}}];
+% Draw diagonals
+\draw[thick,red] (a) -- node[above] {$\mathbf{a}$} (intersection);
+\draw[thick,red] (intersection) -- node[above] {$\mathbf{a}$} (d);
+\draw[thick,blue] (b) -- node[above] {$\mathbf{b}$} (intersection);
+\draw[thick,blue] (intersection) -- node[above] {$\mathbf{b}$} (c);
+\end{tikzpicture}
+\end{minipage}

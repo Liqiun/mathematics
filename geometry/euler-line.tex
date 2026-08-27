@@ -1,0 +1,58 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+
+% Euler line and nine-point circle
+
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.9,baseline=-5mm]
+\def\A{60}
+\def\B{135}
+
+% Triangle
+\coordinate (A) at (0,0);
+\coordinate (B) at (8,0);
+\path[name path=ac] (A) -- +(\A:8);
+\path[name path=bc] (B) -- +(\B:9);
+\path [name intersections = {of = ac and bc, by = {C} }];
+\draw[name path=ab,red,thick] (A) -- (B);
+\draw[red,thick] (B) -- (C);
+\draw[red,thick] (C) -- (A);
+
+% Altitudes
+\draw[name path=calt,blue] (C) -- ($(A)!(C)!(B)$) coordinate (D);
+\draw[name path=aalt,blue] (A) -- ($(B)!(A)!(C)$) coordinate (E);
+\draw[name path=balt,blue] (B) -- ($(A)!(B)!(C)$) coordinate (FF);
+\path [name intersections = {of = aalt and calt, by = {H} }];
+
+% Perpendicular bisectors
+\coordinate (G) at ($(A)!.5!(B)$);
+\coordinate (F) at ($(A)!.5!(C)$);
+\coordinate (GG) at ($(B)!.5!(C)$);
+\path[name path=abperp] (F) -- +(\A-90:5);
+\path[name path=acperp] (G) -- +(90:6);
+\path [name intersections = {of = abperp and acperp, by = {S} }];
+\draw[violet] (F) -- (S) -- (G);
+\draw[violet] (S) -- (GG);
+
+% Draw Euler line and nine-point circle
+\draw (S) -- (H);
+\coordinate (O) at ($(H)!.5!(S)$);
+\node[draw,circle through=(F),black!10!teal,thick] at (O) {};
+
+% Label nodes
+\fill[black!10!teal] (O) circle (1.5pt);
+\fill[violet] (S) circle (1.5pt);
+\fill[blue] (H) circle (1.5pt);
+\node[blue,above left,,xshift=2pt,yshift=4pt] at (H) {$H$};
+\node[right,black!10!teal] at (O) {$O$};
+\node[right,violet] at (S) {$S$};
+
+% Right angles
+\draw[rotate=90,blue] (D) rectangle +(5pt,5pt);
+\draw[rotate=135,blue] (E) rectangle +(5pt,5pt);
+\draw[rotate=-120,blue] (FF) rectangle +(5pt,5pt);
+\draw[rotate=-120,violet] (F) rectangle +(5pt,5pt);
+\draw[rotate=135,violet] (GG) rectangle +(5pt,5pt);
+\draw[rotate=90,violet] (G) rectangle +(5pt,5pt);
+\end{tikzpicture}
+\end{minipage}

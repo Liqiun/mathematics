@@ -1,0 +1,22 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Altitudes meet in the orthocenter
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=.8,baseline=-5mm]
+% Triangle
+\coordinate (a) at (0,0);
+\coordinate (b) at (8,0);
+\coordinate (c) at (6,5);
+\draw[thick] (a) -- (b) -- (c) -- cycle;
+% Draw altitudes
+\draw[thick,red] (a) -- ($(b)!(a)!(c)$) coordinate (pa);
+\draw[thick,blue] (b) -- ($(a)!(b)!(c)$) coordinate (pb);
+\draw[thick,violet] (c) -- ($(a)!(c)!(b)$) coordinate (pc);
+% Draw right angle squares
+\draw[red,rotate=-160] (pa) rectangle +(8pt,8pt);
+\draw[blue,rotate=-138] (pb) rectangle +(8pt,8pt);
+\draw[violet] (pc) rectangle +(8pt,8pt);
+\end{tikzpicture}
+\end{minipage}

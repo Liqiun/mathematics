@@ -1,0 +1,34 @@
+% !TeX root = euclid-without-words.tex
+% !TeX Program=pdfLaTeX
+%
+% Bisector of sides is equal to one half the base
+%
+\begin{minipage}[t]{.48\textwidth}
+\begin{tikzpicture}[scale=1.2]
+
+% Points of the triangle
+\coordinate (a) at (0,0);
+\coordinate (b) at (6,0);
+\coordinate (c) at (4,3);
+
+% Midpoints of the sides
+\coordinate (mid1) at ($(a)!.5!(c)$);
+\coordinate (mid2) at ($(b)!.5!(c)$);
+
+% Midpoint of the base
+\coordinate (midbase) at ($(a)!.5!(b)$);
+
+% Draw the sides of the triangle: the base is drawn in two parts
+\draw[thick,red] (a) -- node[left,xshift=-2pt] {$\mathbf{a}$} (mid1);
+\draw[thick,red] (mid1) -- node[left,xshift=-2pt] {$\mathbf{a}$} (c);
+\draw[thick,blue] (b) -- node[right,xshift=2pt] {$\mathbf{b}$} (mid2);
+\draw[thick,blue] (mid2) -- node[right,xshift=2pt] {$\mathbf{b}$} (c);
+
+% Draw the median
+\draw[thick,black!10!teal] (mid1) -- node[below] {$\mathbf{c}$} (mid2);
+
+% Draw the base
+\draw[thick,black!10!teal] (a) -- node[below] {$\mathbf{c}$} (midbase);
+\draw[thick,black!10!teal] (b) -- node[below] {$\mathbf{c}$} (midbase);
+\end{tikzpicture}
+\end{minipage}
